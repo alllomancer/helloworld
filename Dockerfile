@@ -1,8 +1,9 @@
 FROM golang:1.8
 WORKDIR /go/src/github.com/alllomancer/helloworld
-COPY hello-world.go .
+ADD . /go/src/github.com/alllomancer/helloworld
+RUN cd /go/src/github.com/alllomancer/helloworld
 RUN go test
 
-RUN go build -o hello-world .
+RUN go build -o /app/helloworld .
 
-CMD ./hello-world
+CMD /app/helloworld
