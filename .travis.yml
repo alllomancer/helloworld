@@ -4,8 +4,8 @@ services:
 env:
   global:
     - IMAGE_NAME=alllomancer/helloworld
-    - REGISTRY_USER=alllomancer
-    - REGISTRY_EMAIL=dan.yelovitch@gmail.com
+    - secure: "XdESq5BrX1aJ9QGfBjto4Mphy868WubMm8mG25eE8xbqhOcuRyYHpAMLYoVd6pzgXIUCxWLoML8ZG3cukdI+sIRYlbMru/xz475ToKSUo+T7gmY3IC67Ti4bSkTJ+lp6br3tqTK+yPeZg0uwM+g9BPcSZ6G6pJ1hIm/iR19JQzckcjB7jZLRdoC+V+g+2i7xpcr4oQ+Kug2u1oFOBL1qzNmXOx1cHy+BcAwOlxWuXt17YFhDpGl+vTtr2J2T7VfdEyfYcpkqO//6x5QWwNr1YkdpIbTDUHszUACZ9Kcy4LKYCKwSDbO+l6oJEAv/olhffQ6+sr8VGOGBKaUdZXYjoHy5gbEZvtdNFs11CPjULCxyqGaqraU8UK4FMAKRHtKnkYzm9fxf15dWfH/7bLooidJw2WwKttoNb9MibJfdRMdOCXmDbQSTxr9VHgsPLWgxKGcbdY7b9q1OgNsk9+HgBZ6fYGsM07BRtDpCHzWnAF29LdSTdJF12H/UfzfYbzlsOxHp8Gv3gudsUV8yyZdTc7sjo6bQUtvBagKCJp0Bf1JEVyoA2AHW93/yeHTz7Wv09LmXNjEXYIo5h96H2LO0kld5wr4bdR6ObtSI5aRrO9OeN1CMcmsJpS+M7M6WJ2uA3N8AK+3JYjh33+pkT33rE0sOx+1WUglKfJVPeSB2nUY="
+    - secure: "L710PCAmIj0xDbC7fD7lGPOKjU9Pz0NPw4x1lcpIEf0/6RgVfFR6jxo4KN1xzy176eD9HsXqKdlK9A1H4pTUdyguiJ4eK7DUjAAv5zHWsct2DBhyZu3CBMgC6HJxuagbprKSTqTgFSNRGR/V8c67+NruVpVZC3P5jqipop2fsPEbdkGZpBWAeia2KfgASMtLuSVwsT9KLLFcrJ0U+Biwr33/cqVeLuLZjSErF9D3m5On5ymwqNkEBA+tSISCAkq5yIaayeUnU0ZDl7Iy7+FPF507j6CZNXUyRWeJa0YtX/VxiR1VF+7iB/zmfvUkSgGZlWzEKdhTANnC5vsKZUzgC739lr6yrYSDuj/xvbUYs147P6XQudi8d5bCUUT7fvr+b74SIG61VZaDCo7693e54Iw3ouRHgKsdwyRo3uChhEA+yRUD8pAXcKwWWbOvZOkIrXMeQvi8FWcJjaMRm+OATq4ePeuQ+Y+UNuDnbcp5UkOY61FmsbEiRY9qWFURpjCk2169f+PZsHIiZiaeo0LVpFK7aIsHnAUMoERIDrINOzaEfrb5mqdPsOsUIdUJcPM6gEGimEDsfN6UdtluIL83StSpSUcIFL1YcPcqhfHKSqS3bkbAkkbYh9ryKstaEM9z+TpXWlw3ewbaUqqdTo/uT8vCpVh6XqKtjcQrSUtJsI4="
 before_script:
   - docker pull "$IMAGE_NAME" || true
 script:
@@ -15,7 +15,7 @@ after_script:
   - docker images
 
 before_deploy:
-  - docker login --username="$REGISTRY_USER" --email="REGISTRY_EMAIL"
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
 deploy:
   provider: script
