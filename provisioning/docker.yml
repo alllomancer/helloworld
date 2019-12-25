@@ -1,0 +1,6 @@
+- name: Run a  container.
+  docker_container:
+    image: alllomancer/helloworld
+    name: helloworld
+    state: started
+    command: /app/helloworld
