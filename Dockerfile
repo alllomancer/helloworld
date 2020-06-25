@@ -4,13 +4,13 @@ ADD . /go/src/github.com/alllomancer/helloworld
 RUN cd /go/src/github.com/alllomancer/helloworld
 
 RUN go build -o /app/helloworld .
-RUN chmod +x /go/src/github.com/alllomancer/helloworld/ldd-cp.sh
-RUN /go/src/github.com/alllomancer/helloworld/ldd-cp.sh ldd-cp  /app/helloworld /temp
+#RUN chmod +x /go/src/github.com/alllomancer/helloworld/ldd-cp.sh
+#RUN /go/src/github.com/alllomancer/helloworld/ldd-cp.sh ldd-cp  /app/helloworld /temp
 
 CMD /app/helloworld
 
-FROM busybox AS default-image
+#FROM busybox AS default-image
 
-COPY --from=builder /temp/ /app/
-CMD /app/helloworld
+#COPY --from=builder /temp/ /app/
+#CMD /app/helloworld
 
