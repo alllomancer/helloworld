@@ -12,7 +12,7 @@ script:
   - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
 
 before_deploy:
-  - echo "2Q9WP2CpRa3b" | docker login -u "alllomancer" --password-stdin
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
 deploy:
   provider: script
   script: docker push "${IMAGE_NAME}:latest"
